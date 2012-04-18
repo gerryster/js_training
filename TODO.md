@@ -1,0 +1,3 @@
+- Get tests working
+- Test in Chrome stable
+- Convert index.html to use the rewritten app
