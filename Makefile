@@ -72,7 +72,7 @@ deps:
 # TEST
 #------------------------------------------------------------------- 
 specs: deps
-	find specs -name '*.spec.coffee' | xargs coffee -e 'console.log """define([],#{JSON.stringify process.argv[4..].map (e)->"spec!"+/^specs\/(.*?)\.spec\.coffee/.exec(e)[1]});"""' > spec-runner/GENERATED_all-specs.js
+	find specs -name '*.spec.coffee' | xargs $(coffee) -e 'console.log """define([],#{JSON.stringify process.argv[4..].map (e)->"spec!"+/^specs\/(.*?)\.spec\.coffee/.exec(e)[1]});"""' > spec-runner/GENERATED_all-specs.js
 
 clean: 
 	@@rm src/bootstrap.*

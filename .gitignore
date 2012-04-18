@@ -5,5 +5,9 @@
 
 js/*.js
 
+src/*.js
+!src/cell.js
+!src/cell-builder-plugin.js
+
 node_modules/*
 *.sublime*
