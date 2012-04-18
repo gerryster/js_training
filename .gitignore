@@ -1,0 +1,9 @@
+# Temp Files #
+##############
+*.swp
+*.DS_Store
+
+js/*.js
+
+node_modules/*
+*.sublime*
