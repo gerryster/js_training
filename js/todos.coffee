@@ -172,4 +172,4 @@ window.TodoApp = Backbone.View.extend(
         show = -> tooltip.show().fadeIn()
         
         this.tooltipTimeout = _.delay(show, 1000)
-    )
+)
