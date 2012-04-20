@@ -1,4 +1,6 @@
 - Finish converting the app to the Cell and AMD
 - Get tests working
+- move out boilerplate CSS into it's own file
 - Test in Chrome stable
 - Convert index.html to use the rewritten app
+- delete unused files from the koans

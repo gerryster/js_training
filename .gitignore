@@ -8,6 +8,7 @@ js/*.js
 src/*.js
 src/views/*.js
 src/views/*.css
+src/models/*.js
 !src/cell.js
 !src/cell-builder-plugin.js
 
