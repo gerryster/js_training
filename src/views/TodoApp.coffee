@@ -1,12 +1,11 @@
 define [
   'models/TodoList'
-  'views/TodoView'
+  'cell!./TodoView'
 ], (TodoList, TodoView)->
 
   todos: new TodoList()
 
   on: # similar to the events method in Backbone.View
-    # peter-review: Backbone.Views events are set up so that the values of the hash are strings of the method of this object to call when the events fire.  I could have in-lined these methods in on: but that seemed like a lot of clutter.  Is there a better way to do this?
     "keypress #new-todo": (event...) ->  @createOnEnter(event...)
     "keyup #new-todo": (event...) -> @showTooltip(event...)
     "click .todo-clear a": (event...) -> @clearCompleted(event...)
@@ -14,12 +13,17 @@ define [
   init: ->
     @todos.bind('add', @addOne, this)
     @todos.bind('reset', @addAll, this)
-    @todos.bind('all', @render, this)
+    @todos.bind('all', @_updateStats, this)
 
     @todos.fetch()
 
   afterRender: ->
     @input = @$("#new-todo")
+
+    # for debugging TodoView: set the todo input and trigger pressing the enter key
+    console.log("forcing 'foo' as the first todo")
+    @input.val('foo\n')
+    @createOnEnter({keyCode: 13})
 
   render: (_)-> [
     _ 'h1', "Todos"
@@ -35,6 +39,9 @@ define [
       _ 'ul#todo-list'
     _ '#todo-stats'
   ]
+
+  _updateStats: ->
+    # TODO(rgerry): port this over as well
 
   showTooltip: (e)->
     tooltip = this.$(".ui-tooltip-top")
@@ -52,8 +59,7 @@ define [
     this.tooltipTimeout = _.delay(show, 1000)
 
   addOne: (todo)->
-    view = new TodoView({model: todo})
-    this.$("#todo-list").append(view.render().el)
+    @$("#todo-list").append @_ TodoView, model: todo
 
   addAll: ->
     this.todos.each(this.addOne)

@@ -1,4 +1,5 @@
 - Finish converting the app to the Cell and AMD
+  - TodoApp#_updateStats
 - Get tests working
 - move out boilerplate CSS into it's own file
 - Test in Chrome stable

@@ -1,49 +1,67 @@
 define [], ()->
-  TodoView = Backbone.View.extend
-    tagName:  "li",
+  tagName:  "li",
 
-    events: {
-      "click .check"        : "toggleDone",
-      "dblclick div.todo-text"  : "edit",
-      "click span.todo-destroy"   : "clear",
-      "keypress .todo-input"    : "updateOnEnter"
-    }
+  on: {
+    "click .check": (e...)-> @toggleDone(e...)
+    "dblclick div.todo-text": (e...)-> @edit(e...)
+    "click span.todo-destroy": (e...)-> @clear(e...)
+    "keypress .todo-input": (e...)-> @updateOnEnter(e...)
+  }
 
-    initialize: ->
-      this.model.bind('change', this.render, this)
-      this.model.bind('destroy', this.remove, this)
+  init: ->
+    # this has a defect in that the first model is rendered twice because the model is changed when it is first created
+    #@model.bind('change', this.render, this)
+    @model.bind('destroy', this.remove, this)
 
-    render: ->
-      self = this
-      
-      $(self.el).empty().template(TEMPLATE_URL + '/templates/item.html', self.model.toJSON(), () -> self.setText()
-      )
-      
-      return this
+  render: (_)->
+    # get the root element of this cell and clear it out
+    $(@el).empty()
 
-    setText: ->
-      text = this.model.get('text')
-      this.$('.todo-text').text(text)
-      this.input = this.$('.todo-input')
-      this.input.bind('blur', _.bind(this.close, this)).val(text)
+    checkbox_attrs =
+      type: "checkbox"
+    if @model.done
+      checkbox_attrs.checked = "checked"
 
-    toggleDone: ->
-      this.model.toggle()
+    [
+      _ 'div', { class: 'todo' + (if @model.done then 'done' else '') },
+        _ '.display',
+          _ 'input.check', checkbox_attrs
+          _ '.todo-text'
+          _ 'span.todo-destory'
+        _ '.edit',
+          _ 'input.todo-input', { type: "text", value: "" }
 
-    edit: ->
-      $(this.el).addClass("editing")
-      this.input.focus()
+      #$(self.el).empty().template(TEMPLATE_URL + '/templates/item.html', self.model.toJSON(), () -> self.setText()
+    ]
 
-    close: ->
-      this.model.save({text: this.input.val()})
-      $(this.el).removeClass("editing")
+  afterRender: ->
+    @setText()
 
-    updateOnEnter: (e)->
-      if (e.keyCode == 13)
-        this.close()
+  setText: ->
+    text = this.model.get('text')
+    @$('.todo-text').text(text)
+    @input = @$('.todo-input')
+    # In this case the "_" in "_.bind" is the Underscore.js object.  See
+    # http://documentcloud.github.com/underscore/#bind .
+    @input.bind('blur', _.bind(@close, this)).val(text)
 
-    remove: ->
-      $(this.el).remove()
+  toggleDone: ->
+    @model.toggle()
 
-    clear: ->
-      this.model.destroy()
+  edit: ->
+    $(this.el).addClass("editing")
+    @input.focus()
+
+  close: ->
+    @model.save({text: @input.val()})
+    $(@el).removeClass("editing")
+
+  updateOnEnter: (e)->
+    if (e.keyCode == 13)
+      @close()
+
+  remove: ->
+    $(@el).remove()
+
+  clear: ->
+    @model.destroy()
