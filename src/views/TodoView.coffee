@@ -1,5 +1,7 @@
 define [], ()->
-  tagName:  "li",
+  # Override the root tag of this node.
+  # Similar to the tagName attribute of Backbone.View.
+  tag:  "<li>"
 
   on: {
     "click .check": (e...)-> @toggleDone(e...)
@@ -27,7 +29,7 @@ define [], ()->
         _ '.display',
           _ 'input.check', checkbox_attrs
           _ '.todo-text'
-          _ 'span.todo-destory'
+          _ 'span.todo-destroy'
         _ '.edit',
           _ 'input.todo-input', { type: "text", value: "" }
 
