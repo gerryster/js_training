@@ -33,7 +33,6 @@ define [], ()->
         _ '.edit',
           _ 'input.todo-input', { type: "text", value: "" }
 
-      #$(self.el).empty().template(TEMPLATE_URL + '/templates/item.html', self.model.toJSON(), () -> self.setText()
     ]
 
   afterRender: ->

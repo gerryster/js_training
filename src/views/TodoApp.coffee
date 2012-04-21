@@ -11,19 +11,25 @@ define [
     "click .todo-clear a": (event...) -> @clearCompleted(event...)
 
   init: ->
+    @todos.fetch()
+
+    # When these events happen on the TodoList collection, call the following
+    # methods on this object:
     @todos.bind('add', @addOne, this)
     @todos.bind('reset', @addAll, this)
     @todos.bind('all', @_updateStats, this)
 
-    @todos.fetch()
-
+  # peter-review: is my understanding of Cell correct in that render and
+  # afterRender both happen before anything in the current cell is appended to
+  # the DOM?
   afterRender: ->
     @input = @$("#new-todo")
+    @addAll()
 
     # for debugging TodoView: set the todo input and trigger pressing the enter key
-    console.log("forcing 'foo' as the first todo")
-    @input.val('foo\n')
-    @createOnEnter({keyCode: 13})
+    #console.log("forcing 'foo' as the first todo")
+    #@input.val('foo\n')
+    #@createOnEnter({keyCode: 13})
 
   render: (_)-> [
     _ 'h1', "Todos"
@@ -59,10 +65,12 @@ define [
     this.tooltipTimeout = _.delay(show, 1000)
 
   addOne: (todo)->
-    @$("#todo-list").append @_ TodoView, model: todo
+    @$("#todo-list").append(@_(TodoView, model: todo))
 
   addAll: ->
-    this.todos.each(this.addOne)
+    # Note: we pass this in as the second parameter to each so that addOne is
+    # run in the context of this object and not the global object (window).
+    this.todos.each(this.addOne, this)
 
   createOnEnter: (e)->
     text = this.input.val()
