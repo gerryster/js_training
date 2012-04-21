@@ -11,7 +11,11 @@ define [], ()->
   }
 
   init: ->
-    # this has a defect in that the first model is rendered twice because the model is changed when it is first created
+    # peter-review: the bind to the model below in intended to redraw this
+    # view when the model changes.  That works fine for the Backbone.View
+    # implementation because that render appends itself to "el".  However, in
+    # the case of cell, render get passed the model object as the first
+    # parameter.  Question: how should we re-render a cell?
     #@model.bind('change', this.render, this)
     @model.bind('destroy', this.remove, this)
 

@@ -1,4 +1,5 @@
 - Finish converting the app to the Cell and AMD
+  - TodoView: update the view after the text of the todo changes
   - TodoApp#_updateStats
 - Get tests working
 - move out boilerplate CSS into it's own file
