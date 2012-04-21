@@ -50,19 +50,19 @@ define [
     # TODO(rgerry): port this over as well
 
   showTooltip: (e)->
-    tooltip = this.$(".ui-tooltip-top")
+    tooltip = @$(".ui-tooltip-top")
     val = @input.val()
     
     tooltip.fadeOut()
     
-    if (this.tooltipTimeout)
-        clearTimeout(this.tooltipTimeout)
-    if (val == '' || val == this.input.attr('placeholder'))
+    if (@tooltipTimeout)
+        clearTimeout(@tooltipTimeout)
+    if (val == '' || val == @input.attr('placeholder'))
        return
     
     show = -> tooltip.show().fadeIn()
     
-    this.tooltipTimeout = _.delay(show, 1000)
+    @tooltipTimeout = _.delay(show, 1000)
 
   addOne: (todo)->
     @$("#todo-list").append(@_(TodoView, model: todo))
@@ -70,17 +70,17 @@ define [
   addAll: ->
     # Note: we pass this in as the second parameter to each so that addOne is
     # run in the context of this object and not the global object (window).
-    this.todos.each(this.addOne, this)
+    @todos.each(@addOne, this)
 
   createOnEnter: (e)->
-    text = this.input.val()
+    text = @input.val()
       
     if (!text || e.keyCode != 13)
       return
       
-    this.todos.create({text: text, done: false, order: this.todos.nextOrder()})
-    this.input.val('')
+    @todos.create({text: text, done: false, order: @todos.nextOrder()})
+    @input.val('')
 
   clearCompleted: ->
-    _.each(this.todos.done(), (todo)-> todo.destroy())
+    _.each(@todos.done(), (todo)-> todo.destroy())
     return false
