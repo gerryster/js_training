@@ -25,11 +25,11 @@ define [], ()->
 
     checkbox_attrs =
       type: "checkbox"
-    if @model.done
+    if @model.get('done')
       checkbox_attrs.checked = "checked"
 
     [
-      _ 'div', { class: 'todo' + (if @model.done then 'done' else '') },
+      _ 'div', { class: 'todo' + (if @model.get('done') then ' done' else '') },
         _ '.display',
           _ 'input.check', checkbox_attrs
           _ '.todo-text'
