@@ -12,6 +12,7 @@ src/**/*.css
 !src/views/boilerplate.css
 
 specs/**/*.js
+spec-runner/*.js
 spec-runner/**/*.js
 
 node_modules/*
