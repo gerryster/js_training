@@ -1,8 +1,6 @@
 - Finish converting the app to the Cell and AMD
   - TodoView: update the view after the text of the todo changes
-  - TodoApp#_updateStats
 - Get tests working
-- move out boilerplate CSS into it's own file
 - Test in Chrome stable
 - Convert index.html to use the rewritten app
 - delete unused files from the koans

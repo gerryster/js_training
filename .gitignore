@@ -11,5 +11,8 @@ src/**/*.css
 !src/cell-builder-plugin.js
 !src/views/boilerplate.css
 
+specs/**/*.js
+spec-runner/**/*.js
+
 node_modules/*
 *.sublime*
