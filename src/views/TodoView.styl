@@ -1,126 +1,22 @@
-#todo-list li {
-  padding: 12px 20px 11px 0;
-  position: relative;
-  font-size: 24px;
-  line-height: 1.1em;
-  border-bottom: 1px solid #cccccc;
-}
-#todo-list li:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  clear: both;
-  overflow: hidden;
-  visibility: hidden;
-}
-#todo-list li.editing {
-  padding: 0;
-  border-bottom: 0;
-}
-#todo-list .editing .display,
-#todo-list .edit {
-  display: none;
-}
-#todo-list .editing .edit {
-  display: block;
-}
-#todo-list .editing input {
-  width: 444px;
-  font-size: 24px;
-  font-family: inherit;
-  margin: 0;
-  line-height: 1.6em;
-  border: 0;
-  outline: none;
-  padding: 10px 7px 0px 27px;
-  border: 1px solid #999999;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-}
-#todo-list .check {
-  position: relative;
-  top: 9px;
-  margin: 0 10px 0 7px;
-  float: left;
-}
-#todo-list .done .todo-text {
-  text-decoration: line-through;
-  color: #777777;
-}
-#todo-list .todo-destroy {
-  position: absolute;
-  right: 5px;
-  top: 14px;
-  display: none;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  background: url(/images/destroy.png) no-repeat 0 0;
-}
-#todo-list li:hover .todo-destroy {
-  display: block;
-}
-#todo-list .todo-destroy:hover {
-  background-position: 0 -20px;
-}
-
-/* peter-review: Below was my attempt at getting this stylus correct for the above CSS.  There were problems with the editable view so I switched back to the original CSS above.
-.TodoView
-
-.TodoView li
+li.TodoView
   padding 12px 20px 11px 0
   position relative
   font-size 24px
   line-height 1.1em
   border-bottom 1px solid #cccccc
 
- .TodoView li:after
-  content "\0020"
-  display block
-  height 0
-  clear both
-  overflow hidden
-  visibility hidden
-
-.TodoView li.editing
-  padding 0
-  border-bottom 0
-
-.TodoView .editing .display,
-.TodoView .edit
-  display none
-
-.TodoView .editing input
-  width 444px
-  font-size 24px
-  font-family inherit
-  margin 0
-  line-height 1.6em
-  border 0
-  outline none
-  padding 10px 7px 0px 27px
-  border 1px solid #999999
-  -moz-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
-  -webkit-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
-  -o-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
-  box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
-
-// peter-review not sure how to port these one over to the hierarchy model
-// peter-answer: Probably should belong under TodoApp.styl as #todo-list is
-//               rendered by TodoApp.
-#todo-list .done .todo-text
-  text-decoration line-through
-  color #777777
-#todo-list li:hover .todo-destroy
-  display block
-#todo-list .todo-destroy:hover
-  background-position 0 -20px
-
-.TodoView
+  &:after
+    content "\0020"
+    display block
+    height 0
+    clear both
+    overflow hidden
+    visibility hidden
 
   > .todo
+
+    > .edit
+      display none
 
     > .display
 
@@ -139,3 +35,41 @@
         width 20px
         height 20px
         background url(/images/destroy.png) no-repeat 0 0
+
+        &:hover
+          background-position 0 -20px
+
+  &:hover > .todo > .display > .todo-destroy
+    display block
+
+  &.done .todo-text
+    text-decoration line-through
+    color #777
+
+  &.editing
+    padding 0
+    border-bottom 0
+
+    > .todo
+
+      > .display
+        display none
+
+      > .edit
+        display block
+        
+        > input
+          width 444px
+          font-size 24px
+          font-family inherit
+          margin 0
+          line-height 1.6em
+          border 0
+          outline none
+          padding 10px 7px 0px 27px
+          border 1px solid #999999
+          -moz-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+          -webkit-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+          -o-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+          box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+

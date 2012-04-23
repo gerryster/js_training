@@ -10,8 +10,8 @@ define [], ()->
     "keypress .todo-input": (e...)-> @updateOnEnter(e...)
     "blur .todo-input": (e...)-> @close(e...)
 
-
   init: ->
+    @class = @model.get('done') and 'done' or ''
     @model.bind('destroy', this.remove, this)
     @model.bind 'change', => @$el.empty().append @render @_
 
@@ -34,21 +34,22 @@ define [], ()->
 
   toggleDone: ->
     @model.toggle()
+    @$el.toggleClass 'done', @model.get('done')
 
   edit: ->
-    $(this.el).addClass("editing")
+    @$el.addClass("editing")
     @input.focus()
 
   close: ->
     @model.save({text: @input.val()})
-    $(@el).removeClass("editing")
+    @$el.removeClass("editing")
 
   updateOnEnter: (e)->
     if (e.keyCode == 13)
       @close()
 
   remove: ->
-    $(@el).remove()
+    @$el.remove()
 
   clear: ->
     @model.destroy()
