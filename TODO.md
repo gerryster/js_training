@@ -1,4 +1,3 @@
-- Get tests working
 - Test in Chrome stable
 - Convert index.html to use the rewritten app
 - delete unused files from the koans

@@ -1,10 +1,13 @@
-define ['models/Todo'], (Todo)->
+define [
+  'models/Todo'
+  'helpers/LocalStorage'
+], (Todo,LocalStorage)->
   TodoList = Backbone.Collection.extend
 
     model: Todo
-      
+
     # Use HTML5 local storage instead of saving models to a web server.
-    localStorage: new Backbone.LocalStorage("TodoList")
+    localStorage: new LocalStorage("TodoList")
 
     url: '/todos/'
 
@@ -14,7 +17,7 @@ define ['models/Todo'], (Todo)->
 
     remaining: ->
       this.without.apply(this, this.done())
-      
+
     nextOrder: ->
       if (!this.length)
         return 1
