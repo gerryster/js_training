@@ -1,6 +1,5 @@
-- Finish converting the app to the Cell and AMD
-  - TodoView: update the view after the text of the todo changes
 - Get tests working
 - Test in Chrome stable
 - Convert index.html to use the rewritten app
 - delete unused files from the koans
+- make todo stats its own cell

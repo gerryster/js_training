@@ -19,12 +19,6 @@ define [
     @todos.bind('reset', @addAll, this)
     @todos.bind('all', @_updateStats, this)
 
-  # peter-review: is my understanding of Cell correct in that render and
-  # afterRender both happen before anything in the current cell is appended to
-  # the DOM?
-  # peter-answer: Yes (for render).  No (for afterRender). afterRender() is 
-  #               called right after the Cell element (@el) has been added to
-  #               the DOM.
   afterRender: ->
     @input = @$("#new-todo")
     @addAll()
@@ -76,16 +70,16 @@ define [
   showTooltip: (e)->
     tooltip = @$(".ui-tooltip-top")
     val = @input.val()
-    
+
     tooltip.fadeOut()
-    
+
     if (@tooltipTimeout)
         clearTimeout(@tooltipTimeout)
     if (val == '' || val == @input.attr('placeholder'))
        return
-    
+
     show = -> tooltip.show().fadeIn()
-    
+
     @tooltipTimeout = _.delay(show, 1000)
 
   addOne: (todo)->
@@ -98,10 +92,10 @@ define [
 
   createOnEnter: (e)->
     text = @input.val()
-      
+
     if (!text || e.keyCode != 13)
       return
-      
+
     @todos.create({text: text, done: false, order: @todos.nextOrder()})
     @input.val('')
 
