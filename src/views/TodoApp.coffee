@@ -22,6 +22,9 @@ define [
   # peter-review: is my understanding of Cell correct in that render and
   # afterRender both happen before anything in the current cell is appended to
   # the DOM?
+  # peter-answer: Yes (for render).  No (for afterRender). afterRender() is 
+  #               called right after the Cell element (@el) has been added to
+  #               the DOM.
   afterRender: ->
     @input = @$("#new-todo")
     @addAll()
