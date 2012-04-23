@@ -1,5 +1,3 @@
-- Test in Chrome stable
-- Convert index.html to use the rewritten app
-- delete unused files from the koans
+- Make index.html use the minified version of the app and not live.js
 - make todo stats its own cell
 - TodoView @input should be renamed to @$input to signify that it is a jQuery wrapped DOM node.
