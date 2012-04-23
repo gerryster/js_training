@@ -3,8 +3,6 @@
 *.swp
 *.DS_Store
 
-js/*.js
-
 src/**/*.js
 src/**/*.css
 !src/cell.js
