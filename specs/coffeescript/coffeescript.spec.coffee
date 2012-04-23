@@ -1,5 +1,5 @@
 define -> ->
-  _ = throw 'Implement ME!'
+  _ = -> throw 'Implement ME!'
 
   describe 'Learning CoffeeScript', ->
 
@@ -20,5 +20,5 @@ define -> ->
       # write the union function:
       union = _
 
-      expect(union(a, b)).toEqual a: "Aye", b: ["Bee", "Buzz"], c: "Cool"
+      expect(union(object1, object2)).toEqual a: "Aye", b: ["Bee", "Buzz"], c: "Cool"
 
