@@ -3,3 +3,4 @@
 - Convert index.html to use the rewritten app
 - delete unused files from the koans
 - make todo stats its own cell
+- TodoView @input should be renamed to @$input to signify that it is a jQuery wrapped DOM node.
