@@ -1,0 +1,75 @@
+li.TodoView
+  padding 12px 20px 11px 0
+  position relative
+  font-size 24px
+  line-height 1.1em
+  border-bottom 1px solid #cccccc
+
+  &:after
+    content "\0020"
+    display block
+    height 0
+    clear both
+    overflow hidden
+    visibility hidden
+
+  > .todo
+
+    > .edit
+      display none
+
+    > .display
+
+      > .check
+        position relative
+        top 9px
+        margin 0 10px 0 7px
+        float left
+
+      > .todo-destroy
+        position absolute
+        right 5px
+        top 14px
+        display none
+        cursor pointer
+        width 20px
+        height 20px
+        background url(/images/destroy.png) no-repeat 0 0
+
+        &:hover
+          background-position 0 -20px
+
+  &:hover > .todo > .display > .todo-destroy
+    display block
+
+  &.done .todo-text
+    text-decoration line-through
+    color #777
+
+  &.editing
+    padding 0
+    border-bottom 0
+
+    > .todo
+
+      > .display
+        display none
+
+      > .edit
+        display block
+        
+        > input
+          width 444px
+          font-size 24px
+          font-family inherit
+          margin 0
+          line-height 1.6em
+          border 0
+          outline none
+          padding 10px 7px 0px 27px
+          border 1px solid #999999
+          -moz-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+          -webkit-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+          -o-box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+          box-shadow rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset
+

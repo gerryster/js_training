@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Backbone Demo: Todos</title>
+  <link rel="stylesheet" href="vendor/jquery-ui.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="src/views/boilerplate.css" type="text/css" media="screen">
+  <script src="vendor/jquery.js"></script>
+  <script src="vendor/jquery-ui.min.js"></script>
+  <script src='node_modules/requirejs/require.js'></script>
+  <script src='node_modules/underscore/underscore.js'></script>
+  <script src='node_modules/backbone/backbone.js'></script>
+  <script src="vendor/backbone.localStorage.js"></script>
+  <script type="text/javascript" src="js/ext/backbone.localStorage.js"></script>
+  <script>
+    if(window.location.search.indexOf('live') > -1){
+      $('head').append($("<script src='vendor/live.js'>"));
+    }
+  </script>
+  <script src='src/cell.js'></script>
+</head>
+<body style='margin:0;padding:0;'
+	  data-cell='views/TodoApp'
+	  data-cell-baseurl='src'>
+</body>
+</html>
