@@ -1,5 +1,5 @@
 define -> ->
-  __ = -> throw 'Implement ME!'
+  implementMe = -> throw 'Implement ME!'
 
   describe 'Learning CoffeeScript', ->
 
@@ -12,9 +12,10 @@ define -> ->
       #
       # Also note that CoffeeScript does not have the ternary operator
       # (foo ? "bar": "baz") but (if foo then "bar" else "baz") works.
-      sortMe = (list, ascending)->
+      sortMe = (list, ascending)-> # exercise{{{
         _.sortBy list, (num)->
           if(ascending) then num else -num
+      # }}}exercise
 
       it "ascending", ->
         expect(sortMe([1,5,2,-3], true)).toEqual [-3,1,2,5]
@@ -35,7 +36,7 @@ define -> ->
       # Also, JavaScript objects can be treated very similar to Ruby hashes so
       # keys can be dynamically retrieved at runtime with the following syntax:
       #  value = object["property"]
-      union = (a,b) ->
+      union = (a,b) -> # exercise{{{
         result = {}
         result[key] = value for key, value of a
 
@@ -46,6 +47,7 @@ define -> ->
             valueArray = [result[key], value]
             result[key] = valueArray
         return result
+      # }}}exercise
 
       expect(union(object1, object2)).toEqual a: "Aye", b: ["Bee", "Buzz"], c: "Cool"
 
