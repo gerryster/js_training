@@ -12,6 +12,8 @@ src/**/*.css
 specs/**/*.js
 spec-runner/*.js
 spec-runner/**/*.js
+spec-runner/*.css
+spec-runner/**/*.css
 
 node_modules/*
 *.sublime*
