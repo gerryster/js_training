@@ -1,6 +1,7 @@
 # Remove the answer sections to exercises.
 
 fs = require('fs')
+
 file_to_change = process.argv[2]
 console.log "removing exercise answers from: #{file_to_change}"
 throw "the first argument must be the path to a file" unless file_to_change
