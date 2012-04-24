@@ -2,7 +2,7 @@
 
 fs = require('fs')
 file_to_change = process.argv[2]
-console.log "file to change is #{file_to_change}"
+console.log "removing exercise answers from: #{file_to_change}"
 throw "the first argument must be the path to a file" unless file_to_change
 originalContent = fs.readFileSync(file_to_change, "utf8")
 newContent = []

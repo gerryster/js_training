@@ -8,7 +8,7 @@ closure = vendor/closure-compiler/compiler.jar
 
 #-------------------------------------------------------------------
 # BUILD
-#------------------------------------------------------------------- 
+#-------------------------------------------------------------------
 requirejsBuild = node_modules/.bin/r.js
 
 
@@ -19,7 +19,7 @@ requirejsBuild = node_modules/.bin/r.js
 
 #-------------------------------------------------------------------
 # BUILD
-#------------------------------------------------------------------- 
+#-------------------------------------------------------------------
 src/bootstrap.js: deps src/cell.js src/cell-builder-plugin.js
 	$(coffee) -c -b src/
 	$(stylus) --include ./src/styles --compress src/views/*.styl
@@ -40,8 +40,8 @@ src/bootstrap.js: deps src/cell.js src/cell-builder-plugin.js
 	rm src/bootstrap-tmp.*
 
 #------------------------------------------------------------------
-# DEV 
-#------------------------------------------------------------------- 
+# DEV
+#-------------------------------------------------------------------
 server: deps
 	$(coffee) dev-server.coffee ./
 
@@ -52,8 +52,8 @@ coffee: deps
 	find src/ specs spec-runner -name '*.coffee' -type f | xargs $(coffee) -c -b --watch
 
 #-------------------------------------------------------------------
-# Dependencies 
-#------------------------------------------------------------------- 
+# Dependencies
+#-------------------------------------------------------------------
 remove-closure:
 	rm -rf vendor/closure-compiler
 
@@ -70,9 +70,15 @@ deps:
 
 #-------------------------------------------------------------------
 # TEST
-#------------------------------------------------------------------- 
+#-------------------------------------------------------------------
 specs: deps
 	find specs -name '*.spec.coffee' | xargs $(coffee) -e 'console.log """define([],#{JSON.stringify process.argv[4..].map (e)->"spec!"+/^specs\/(.*?)\.spec\.coffee/.exec(e)[1]});"""' > spec-runner/GENERATED_all-specs.js
 
-clean: 
+clean:
 	@@rm src/bootstrap.*
+
+#-------------------------------------------------------------------
+# Training
+#-------------------------------------------------------------------
+exercises:
+	grep --files-with-matches -r  "# exercise{{{" specs | xargs coffee script/make_training.coffee
