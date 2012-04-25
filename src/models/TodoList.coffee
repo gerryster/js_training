@@ -12,17 +12,18 @@ define [
     url: '/todos/'
 
     done: ->
-      this.filter (todo) ->
+      @filter (todo) ->
         todo.get('done')
 
     remaining: ->
-      this.without.apply(this, this.done())
+      @without.apply(@, @done())
 
     nextOrder: ->
-      if (!this.length)
+      if (!@length)
         return 1
 
       this.last().get('order') + 1
-
+    # exercise{{{
     comparator: (todo)->
       todo.get('order')
+    # }}}exercise

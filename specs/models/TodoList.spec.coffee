@@ -17,7 +17,9 @@ define -> ({loadModule})->
       expect(todos.length).toEqual(1)
 
       # How would you add multiple models to the collection with a single method call?
+      # exercide{{{
       todos.add([{ text: 'Clean the kitchen' }, { text: 'task 2'}])
+      # }}}exercise
 
       expect(todos.length).toEqual(3)
 
@@ -27,10 +29,8 @@ define -> ({loadModule})->
       # Without changing the sequence of the Todo objects in the array, how would you
       # get the expectations below to pass?
       #
-      # How is the collection sorting the models when they are added? (see TodoList.comparator)
-      #
-      # Hint: Could you change attribute values on the todos themselves?
-
+      # Hint: Backbone collections can define custom comparators:
+      # http://documentcloud.github.com/backbone/#Collection-comparator
       todos.add([{ text: 'Do the laundry',  order: 2},
                  { text: 'Clean the house', order: 1},
                  { text: 'Take a nap',      order: 3}])
@@ -48,8 +48,10 @@ define -> ({loadModule})->
       todos.bind('add', addModelCallback)
 
       # How would you get both expectations to pass with a single method call?
+      # exercise{{{
       todo = new Todo({text: 'pass this test'})
       todos.add(todo)
+      # }}}exercise
 
       expect(todos.length).toEqual(1)
       expect(addModelCallback).toHaveBeenCalled()
@@ -58,7 +60,37 @@ define -> ({loadModule})->
       todos.bind('remove', removeModelCallback)
 
       # How would you get both expectations to pass with a single method call?
+      # exercise{{{
       todos.remove(todo)
+      # }}}exercise
 
       expect(todos.length).toEqual(0)
       expect(removeModelCallback).toHaveBeenCalled()
+
+    describe 'remaining', ->
+      it 'returns the empty list for no todos', ->
+        expect(new @TodoList().remaining().length).toEqual 0
+
+      it 'returns the empty list for one done todos', ->
+        todos = new @TodoList()
+        todos.add { done: true }
+        expect(todos.remaining().length).toEqual 0
+
+      it 'returns the todo for one unfinished todo', ->
+        todos = new @TodoList()
+        unfinished = new Todo {text: "not done", done: false}
+        todos.add unfinished
+        expect(todos.remaining().length).toEqual 1
+        expect(todos.remaining()).toEqual [unfinished]
+
+      it 'returns the unfinished todos given a list of finished an unfinished todos', ->
+        todos = new @TodoList()
+        unfinished1 = new Todo {text: "not done 1", done: false}
+        todos.add unfinished1
+        todos.add new Todo {text: "finished 1", done: true}
+        unfinished2 = new Todo {text: "not done 2", done: false}
+        todos.add unfinished2
+        todos.add new Todo {text: "finished 2", done: true}
+
+        expect(todos.remaining().length).toEqual 2
+        expect(todos.remaining()).toEqual [unfinished1, unfinished2]
