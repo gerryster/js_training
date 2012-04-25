@@ -10,7 +10,7 @@ for file_to_change in files
   originalContent = fs.readFileSync(file_to_change, "utf8")
   newContent = []
 
-  ex_begin_regex = /# exercise\{\{\{ ?/
+  ex_begin_regex = /(#|\/\/) exercise\{\{\{ ?/
   in_exercise = false
 
   for line in originalContent.split("\n")
@@ -18,7 +18,7 @@ for file_to_change in files
     if line.match ex_begin_regex
       newContent.push(line.replace ex_begin_regex, "")
       in_exercise = true
-    else if line.match(/# \}\}\}exercise/)
+    else if line.match(/(#|\/\/) \}\}\}exercise/)
       in_exercise = false
       omit_line = true
 
