@@ -1,7 +1,7 @@
 define [], ()->
   # exercise{{{ NAUGHTY_WORDS = /crap|poop|hell|frogs/gi
   NAUGHTY_WORDS = /crap|poop|hell|frogs|feces/gi
-  # }}} exercise
+  # }}}exercise
 
   sanitize = (str) ->
     str.replace(NAUGHTY_WORDS, 'double rainbows')
