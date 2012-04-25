@@ -25,14 +25,14 @@ define -> ({loadModule})->
       expect(defaultAttrs).toEqual(todo.attributes)
 
     it 'Attributes can be set on the model instance when it is created.', ->
-      todo = new Todo({ text: 'Get oil change for car.' })
+      todo = new @Todo({ text: 'Get oil change for car.' })
 
       expectedText = 'Get oil change for car.'
 
       expect(expectedText).toEqual(todo.get('text'))
 
     it 'If it is exists, an initialize function on the model will be called when it is created.', ->
-      todo = new Todo({ text: 'Stop monkeys from throwing their own feces!' })
+      todo = new @Todo({ text: 'Stop monkeys from throwing their own feces!' })
 
       # Why does the expected text differ from what is passed in when we create the Todo?
       # What is happening in Todo.initialize?
@@ -43,7 +43,7 @@ define -> ({loadModule})->
     it 'Fires a custom event when the state changes.', ->
       callback = jasmine.createSpy('-change event callback-')
 
-      todo = new Todo()
+      todo = new @Todo()
 
       todo.bind('change', callback)
 
@@ -56,7 +56,7 @@ define -> ({loadModule})->
     it 'Can contain custom validation rules, and will trigger an error event on failed validation.', ->
       errorCallback = jasmine.createSpy('-error event callback-')
 
-      todo = new Todo()
+      todo = new @Todo()
 
       todo.bind('error', errorCallback)
 
