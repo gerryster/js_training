@@ -1,5 +1,5 @@
 define [], ()->
-  # exercise{{{NAUGHTY_WORDS = /crap|poop|hell|frogs/gi
+  # exercise{{{ NAUGHTY_WORDS = /crap|poop|hell|frogs/gi
   NAUGHTY_WORDS = /crap|poop|hell|frogs|feces/gi
   # }}} exercise
 

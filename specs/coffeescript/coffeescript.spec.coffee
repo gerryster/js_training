@@ -12,7 +12,7 @@ define -> ->
       #
       # Also note that CoffeeScript does not have the ternary operator
       # (foo ? "bar": "baz") but (if foo then "bar" else "baz") works.
-      sortMe = (list, ascending)-> # exercise{{{
+      sortMe = (list, ascending)-> # exercise{{{ implementMe()
         _.sortBy list, (num)->
           if(ascending) then num else -num
       # }}}exercise
@@ -36,7 +36,7 @@ define -> ->
       # Also, JavaScript objects can be treated very similar to Ruby hashes so
       # keys can be dynamically retrieved at runtime with the following syntax:
       #  value = object["property"]
-      union = (a,b) -> # exercise{{{
+      union = (a,b) -> # exercise{{{ implementMe()
         result = {}
         result[key] = value for key, value of a
 
