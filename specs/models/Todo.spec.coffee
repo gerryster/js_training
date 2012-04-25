@@ -27,7 +27,9 @@ define -> ({loadModule})->
     it 'Attributes can be set on the model instance when it is created.', ->
       todo = new @Todo({ text: 'Get oil change for car.' })
 
-      expectedText = 'Get oil change for car.'
+      expectedText = # exercise{{{ 'FIX ME'
+        'Get oil change for car.'
+      # }}}exercise
 
       expect(expectedText).toEqual(todo.get('text'))
 
@@ -36,7 +38,7 @@ define -> ({loadModule})->
 
       # Why does the expected text differ from what is passed in when we create the Todo?
       # What is happening in Todo.initialize?
-      # You can get this test passing without changing todos.js or the expected text.
+      # You can get this test passing without changing Todo.coffee or the expected text.
 
       expect('Stop monkeys from throwing their own double rainbows!').toBe(todo.get('text'))
 
@@ -49,7 +51,9 @@ define -> ({loadModule})->
 
       # How would you update a property on the todo here?
       # Hint: http://documentcloud.github.com/backbone/#Model-set
+      # exercise{{{
       todo.set('done', true)
+      # }}}exercise
 
       expect(callback).toHaveBeenCalled()
 
@@ -61,8 +65,10 @@ define -> ({loadModule})->
       todo.bind('error', errorCallback)
 
       # What would you need to set on the todo properties to cause validation to fail?
-      # Refer to Todo.validate in js/todos.js to see the logic.
+      # Refer to Todo.validate in Todo.coffee to see the logic.
+      # exercise{{{
       todo.set('done', 'bogus')
+      # }}}exercise
 
       errorArgs = errorCallback.mostRecentCall.args
 

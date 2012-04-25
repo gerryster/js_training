@@ -1,13 +1,16 @@
 define [], ()->
+  # exercise{{{NAUGHTY_WORDS = /crap|poop|hell|frogs/gi
   NAUGHTY_WORDS = /crap|poop|hell|frogs|feces/gi
+  # }}} exercise
 
   sanitize = (str) ->
     str.replace(NAUGHTY_WORDS, 'double rainbows')
 
   Todo = Backbone.Model.extend
     defaults: ->
-      text: '',
+      text: '', # exercise{{{
       done:  false,
+      # }}}exercise
       order: 0
 
     initialize: ->
