@@ -81,4 +81,4 @@ clean:
 # Training
 #-------------------------------------------------------------------
 exercises:
-	grep --files-with-matches -r  "# exercise{{{" specs | xargs $(coffee) script/make_training.coffee
+	grep --files-with-matches -r  "# exercise{{{" specs src | xargs $(coffee) script/make_training.coffee
