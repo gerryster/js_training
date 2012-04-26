@@ -15,8 +15,11 @@ define [
       @filter (todo) ->
         todo.get('done')
 
+    # exercise {{{
     remaining: ->
-      @without.apply(@, @done())
+      # use "..." operator to expand the done array as an argument list
+      @without @done()...
+    # }}}exercise
 
     nextOrder: ->
       if (!@length)

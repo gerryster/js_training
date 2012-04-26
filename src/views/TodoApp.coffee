@@ -8,7 +8,6 @@ define [
 
   on: # similar to the events method in Backbone.View
     "keypress #new-todo": (event...) ->  @createOnEnter(event...)
-    "keyup #new-todo": (event...) -> @showTooltip(event...)
     "click .todo-clear a": (event...) -> @clearCompleted(event...)
 
   init: ->
@@ -21,7 +20,9 @@ define [
 
   afterRender: ->
     @input = @$("#new-todo")
+    # exercise{{{ # do something which adds all of the @todos to the DOM
     @addAll()
+    # }}}exercise
 
     # for debugging TodoView: set the todo input and trigger pressing the enter key
     #console.log("forcing 'foo' as the first todo")
@@ -36,7 +37,6 @@ define [
         _ 'input#new-todo',
           placeholder: "What needs to be done?",
           type: "text",
-        _ 'span.ui-tooltip-top', { style: "display:none;" }, 'Press Enter to save this task'
 
     _ '#todos',
       _ 'ul#todo-list'
@@ -44,28 +44,15 @@ define [
     _ Stats, model: @todos
   ]
 
-  showTooltip: (e)->
-    tooltip = @$(".ui-tooltip-top")
-    val = @input.val()
-
-    tooltip.fadeOut()
-
-    if (@tooltipTimeout)
-        clearTimeout(@tooltipTimeout)
-    if (val == '' || val == @input.attr('placeholder'))
-       return
-
-    show = -> tooltip.show().fadeIn()
-
-    @tooltipTimeout = _.delay(show, 1000)
-
   addOne: (todo)->
     @$("#todo-list").append(@_(TodoView, model: todo))
 
+  # exercise{{{
   addAll: ->
     # Note: we pass this in as the second parameter to each so that addOne is
     # run in the context of this object and not the global object (window).
     @todos.each(@addOne, this)
+  # }}}exercise
 
   createOnEnter: (e)->
     text = @input.val()
