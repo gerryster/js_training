@@ -1,7 +1,8 @@
 define [
   'models/TodoList'
   'cell!./TodoView'
-], (TodoList, TodoView)->
+  'cell!./Stats'
+], (TodoList, TodoView, Stats)->
 
   todos: new TodoList()
 
@@ -17,12 +18,10 @@ define [
     # methods on this object:
     @todos.bind('add', @addOne, this)
     @todos.bind('reset', @addAll, this)
-    @todos.bind('all', @_updateStats, this)
 
   afterRender: ->
     @input = @$("#new-todo")
     @addAll()
-    @_updateStats()
 
     # for debugging TodoView: set the todo input and trigger pressing the enter key
     #console.log("forcing 'foo' as the first todo")
@@ -41,31 +40,9 @@ define [
 
     _ '#todos',
       _ 'ul#todo-list'
-    _ '#todo-stats'
+
+    _ Stats, model: @todos
   ]
-
-  _updateStats: ->
-    _ = @_
-    total = @todos.length
-    num_done = @todos.done().length
-    remaining = @todos.remaining().length
-    new_stats = []
-
-    if total
-      new_stats.push(
-        _ 'span.todo-count',
-          _ 'span.number', remaining
-          _ 'span.word', ( if remaining == 1 then ' item' else ' items' ) + ' left'
-      )
-    if num_done
-      new_stats.push(
-        _ 'span.todo-clear',
-          _ 'a', { href: "#" }, 'Clear ',
-            _ 'span.number-done', num_done
-            _ 'span', ' completed'
-            _ 'span.word-done', if num_done == 1 then ' item' else ' items'
-      )
-    @$('#todo-stats').empty().append(new_stats)
 
   showTooltip: (e)->
     tooltip = @$(".ui-tooltip-top")
