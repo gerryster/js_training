@@ -8,7 +8,6 @@ define [
 
   on: # similar to the events method in Backbone.View
     "keypress #new-todo": (event...) ->  @createOnEnter(event...)
-    "click .todo-clear a": (event...) -> @clearCompleted(event...)
 
   init: ->
     @todos.fetch()
@@ -63,6 +62,3 @@ define [
     @todos.create({text: text, done: false, order: @todos.nextOrder()})
     @input.val('')
 
-  clearCompleted: ->
-    _.each(@todos.done(), (todo)-> todo.destroy())
-    return false
