@@ -1,5 +1,5 @@
 define ->
-# exercise{{{
+# exercise{{{ {} # add the appropriate Cell methods to this empty object
 
   init: ->
     @todos = @model
