@@ -49,7 +49,7 @@ define -> ({loadModule})->
 
       # How would you get both expectations to pass with a single method call?
       # exercise{{{
-      todo = new Todo({text: 'pass this test'})
+      todo = new @TodoList::model({text: 'pass this test'})
       todos.add(todo)
       # }}}exercise
 
@@ -78,19 +78,19 @@ define -> ({loadModule})->
 
       it 'returns the todo for one unfinished todo', ->
         todos = new @TodoList()
-        unfinished = new Todo {text: "not done", done: false}
+        unfinished = new @TodoList::model {text: "not done", done: false}
         todos.add unfinished
         expect(todos.remaining().length).toEqual 1
         expect(todos.remaining()).toEqual [unfinished]
 
       it 'returns the unfinished todos given a list of finished an unfinished todos', ->
         todos = new @TodoList()
-        unfinished1 = new Todo {text: "not done 1", done: false}
+        unfinished1 = new @TodoList::model {text: "not done 1", done: false}
         todos.add unfinished1
-        todos.add new Todo {text: "finished 1", done: true}
-        unfinished2 = new Todo {text: "not done 2", done: false}
+        todos.add new @TodoList::model {text: "finished 1", done: true}
+        unfinished2 = new @TodoList::model {text: "not done 2", done: false}
         todos.add unfinished2
-        todos.add new Todo {text: "finished 2", done: true}
+        todos.add new @TodoList::model {text: "finished 2", done: true}
 
         expect(todos.remaining().length).toEqual 2
         expect(todos.remaining()).toEqual [unfinished1, unfinished2]

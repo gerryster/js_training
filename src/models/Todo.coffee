@@ -23,7 +23,4 @@ define [], ()->
     toggle: ->
       this.save({done: !this.get("done")})
 
-  # TODO(rgerry): do not assign TODO to window and fix the TodoList tests to
-  # load this module.
-  window.Todo = Todo
   return Todo
