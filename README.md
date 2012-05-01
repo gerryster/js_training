@@ -23,7 +23,7 @@ If you encounter SSL problems installing npm modules then tell npm to default to
 
     > make server
 
-In a browser, visit `http://localhost:3000/index-dev.html?mock-data`.  
+In a browser, visit `http://localhost:3000/index-dev.html?live`.
 
 ### Why a server?
 
