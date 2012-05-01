@@ -6,7 +6,9 @@ define [], ()->
   on:
     "click .check": (e...)-> @toggleDone(e...)
     "dblclick div.todo-text": (e...)-> @edit(e...)
+    # exercise{{{ # add an event handler which deletes a TODO
     "click span.todo-destroy": (e...)-> @clear(e...)
+    # }}}exercise
     "keypress .todo-input": (e...)-> @updateOnEnter(e...)
     "blur .todo-input": (e...)-> @close(e...)
 
@@ -24,10 +26,12 @@ define [], ()->
 
     [
       _ 'div', { class: 'todo' + (if @model.get('done') then ' done' else '') },
+        # exercise{{{
         _ '.display',
           _ 'input.check', checkbox_attrs
           _ '.todo-text', text
           _ 'span.todo-destroy'
+        # }}}exercise
         _ '.edit',
           @input = $(_ 'input.todo-input', type: "text", value: text)
     ]
@@ -51,5 +55,7 @@ define [], ()->
   remove: ->
     @$el.remove()
 
+  # exercise{{{
   clear: ->
     @model.destroy()
+  # }}}exercise

@@ -6,7 +6,7 @@ define [], ()->
   sanitize = (str) ->
     str.replace(NAUGHTY_WORDS, 'double rainbows')
 
-  Todo = Backbone.Model.extend
+  Backbone.Model.extend
     defaults: ->
       text: '', # exercise{{{
       done:  false,
@@ -22,5 +22,3 @@ define [], ()->
 
     toggle: ->
       this.save({done: !this.get("done")})
-
-  return Todo
