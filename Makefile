@@ -20,24 +20,23 @@ requirejsBuild = node_modules/.bin/r.js
 #-------------------------------------------------------------------
 # BUILD
 #-------------------------------------------------------------------
-src/bootstrap.js: deps src/cell.js src/cell-builder-plugin.js
+src/bootstrap.js: deps vendor/cell.js vendor/cell-builder-plugin.js
 	$(coffee) -c -b src/
 	$(stylus) --include ./src/styles --compress src/views/*.styl
 	$(requirejsBuild) \
 		-o \
+		paths.jquery=../vendor/jquery \
+		paths.backbone=../node_modules/backbone/backbone \
+		paths.underscore=../node_modules/underscore/underscore \
 		paths.requireLib=../node_modules/requirejs/require \
-		include=requireLib \
-		name=cell!views/App \
-		out=src/bootstrap-tmp.js \
+		paths.backbone_localStorage=../vendor/backbone.localStorage \
+		paths.cell=../vendor/cell \
+		paths.cell-builder-plugin=../vendor/cell-builder-plugin \
+		include=jquery,underscore,backbone,backbone_localStorage,requireLib \
+		name=cell!views/TodoApp \
+		out=src/bootstrap.js \
 		optimize=none \
-		baseUrl=src includeRequire=true
-	cat vendor/jquery.js \
-			node_modules/underscore/underscore.js \
-			node_modules/backbone/backbone.js \
-			src/bootstrap-tmp.js > src/bootstrap-tmp.unmin.js
-	java -jar $(closure) --compilation_level SIMPLE_OPTIMIZATIONS --js src/bootstrap-tmp.unmin.js --js_output_file src/bootstrap.js
-	mv src/bootstrap-tmp.css src/bootstrap.css
-	rm src/bootstrap-tmp.*
+		baseUrl=src
 
 #------------------------------------------------------------------
 # DEV
