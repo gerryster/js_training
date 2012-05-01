@@ -26,7 +26,7 @@ define [], ()->
 
     [
       _ 'div', { class: 'todo' + (if @model.get('done') then ' done' else '') },
-        # exercise{{{
+        # exercise{{{ # add div here for cell rendering excercise
         _ '.display',
           _ 'input.check', checkbox_attrs
           _ '.todo-text', text
