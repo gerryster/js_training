@@ -1,5 +1,2 @@
-- Todo (model) should not be attached to window
-- make todo stats its own cell
-- TodoView @input should be renamed to @$input to signify that it is a jQuery wrapped DOM node.
 - Make index.html use the minified version of the app and not live.js
 - put cell in vendor

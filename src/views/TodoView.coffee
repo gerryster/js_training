@@ -33,7 +33,8 @@ define [], ()->
           _ 'span.todo-destroy'
         # }}}exercise
         _ '.edit',
-          @input = $(_ 'input.todo-input', type: "text", value: text)
+          # input is prefixed with a "$" as it is a jQuery object:
+          @$input = $(_ 'input.todo-input', type: "text", value: text)
     ]
 
   toggleDone: ->
@@ -42,10 +43,10 @@ define [], ()->
 
   edit: ->
     @$el.addClass("editing")
-    @input.focus()
+    @$input.focus()
 
   close: ->
-    @model.save({text: @input.val()})
+    @model.save({text: @$input.val()})
     @$el.removeClass("editing")
 
   updateOnEnter: (e)->
