@@ -18,14 +18,14 @@ define [
     @todos.bind('reset', @addAll, this)
 
   afterRender: ->
-    @input = @$("#new-todo")
+    @$input = @$("#new-todo")
     # exercise{{{ # do something which adds all of the @todos to the DOM
     @addAll()
     # }}}exercise
 
     # for debugging TodoView: set the todo input and trigger pressing the enter key
     #console.log("forcing 'foo' as the first todo")
-    #@input.val('foo\n')
+    #@$input.val('foo\n')
     #@createOnEnter({keyCode: 13})
 
   render: (_)-> [
@@ -54,11 +54,11 @@ define [
   # }}}exercise
 
   createOnEnter: (e)->
-    text = @input.val()
+    text = @$input.val()
 
     if (!text || e.keyCode != 13)
       return
 
     @todos.create({text: text, done: false, order: @todos.nextOrder()})
-    @input.val('')
+    @$input.val('')
 
