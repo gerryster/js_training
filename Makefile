@@ -32,10 +32,9 @@ src/bootstrap.js: deps vendor/cell.js vendor/cell-builder-plugin.js
 		paths.backbone_localStorage=../vendor/backbone.localStorage \
 		paths.cell=../vendor/cell \
 		paths.cell-builder-plugin=../vendor/cell-builder-plugin \
-		include=jquery,underscore,backbone,backbone_localStorage,requireLib \
+		include=underscore,backbone,backbone_localStorage,requireLib \
 		name=cell!views/TodoApp \
 		out=src/bootstrap.js \
-		optimize=none \
 		baseUrl=src
 
 #------------------------------------------------------------------
